@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 // import { connect, Provider } from 'react-redux';
 
 import './scss/style.scss';
-// import { App } from './components/app';
+import { App } from './components/app';
 // import { store } from './store/reducers/weatherReducer';
 
 
@@ -18,3 +18,7 @@ import './scss/style.scss';
 // ReactDOM.render(<Provider store={store}>
 //                     <MainComponent />
 //                 </Provider>, document.getElementById("root"));
+
+
+
+render(<App />, document.getElementById('root'));
