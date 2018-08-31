@@ -20,5 +20,8 @@ export const testData = {
         byPriority: false,
         byProjectName: ""
     },
-    formType: "" //new, edit
+    formType: {
+        type: "", //new, edit, ""
+    },
+    projectNameList: {},
 }

@@ -4,7 +4,7 @@ import { TaskList } from './TaskList';
 import { Filter } from './Filter';
 import { Form } from './Form';
 
-import { testData } from "../store/testData";
+import { store } from "../store/reducers/rootReducer";
 
 export class App extends Component {
     constructor(props){
@@ -14,9 +14,9 @@ export class App extends Component {
     render() {
         return <main className="veiwport">
             <h1 className="h1">Todo:</h1>
-            <TaskList />
+            <TaskList tasks={store.getState().tasks}/>
             <Filter />
-            <Form />
+            { store.getState().formType.type == 'new' && <Form /> }
         </main>
     }
 }

@@ -1,24 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
-// import { connect, Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 
 import './scss/style.scss';
 import { App } from './components/app';
-// import { store } from './store/reducers/weatherReducer';
+import { store } from './store/reducers/rootReducer';
 
 
-// const mapStateToProps = (state) => {
-//     return {
-//         weather: state
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        weather: state
+    }
+};
 
-// const MainComponent = connect(mapStateToProps)(App);
+const MainComponent = connect(mapStateToProps)(App);
 
-// ReactDOM.render(<Provider store={store}>
-//                     <MainComponent />
-//                 </Provider>, document.getElementById("root"));
-
-
-
-render(<App />, document.getElementById('root'));
+render(<Provider store={store}>
+                    <MainComponent />
+                </Provider>, document.getElementById("root"));
