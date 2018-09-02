@@ -1,6 +1,6 @@
 import { initialState } from "../initialState";
 
-export function taskReducer(state = initialState, action){
+export function taskReducer(state = initialState.tasks, action){
 
     switch (action.type){
         case 'ADD_TASK':

@@ -2,26 +2,31 @@ import React, { PureComponent } from 'react';
 
 import { store } from "../store/reducers/rootReducer";
 import { closeTaskAction } from "../store/actions/closeTaskAction";
-import { toggleTaskDescriptionAction } from "../store/actions/toggleTaskDescriptionAction";
+import { removeProjectNameFromSelectAction } from "../store/actions/removeProjectNameFromSelectAction";
 
 export class Task extends PureComponent {
 
     constructor(props){
         super(props);
+        this.state = {
+            isDescrOpen: false
+        }
     }
 
-    closeTask(key){
+    closeTask(key, projectName){
         store.dispatch(closeTaskAction(key));
+        store.dispatch(removeProjectNameFromSelectAction(projectName));
+
     }
 
-    toggleDescription(key){
-        console.log(store.getState())
-        store.dispatch(toggleTaskDescriptionAction(key))
-        console.log(store.getState())
+    toggleDescription(){
+        this.setState({
+            isDescrOpen: !this.state.isDescrOpen
+        })
     }
 
     render(){
-        let { priority, key, title, projectName, showDescription, description } = this.props.data;
+        let { priority, key, title, projectName, description } = this.props.data;
 
         return <section className={`task task--${priority}`} key={key}>
             <h2 className="task__title">{title}</h2>
@@ -29,11 +34,13 @@ export class Task extends PureComponent {
                 <div className="project">Проект: <span className="project__name">{projectName}</span></div>
                 <div className="priority">Приоритет: <span className="priority__num">{priority}</span></div>
             </div>
-            <div className="task__descr">{ (showDescription) ? description : "" }</div>
+            <div className="task__descr">{ (this.state.isDescrOpen) ? description : "" }</div>
             <div className="btns-wrap">
                 <button className="btn">Изменить</button>
-                <button className="btn" onClick={ () => {this.closeTask(key)} }>Закрыть</button>
-                <button className="btn" onClick={ () => {this.toggleDescription(key)} }>Развернуть</button>
+                <button className="btn" onClick={ () => {this.closeTask(key, projectName)} }>Закрыть</button>
+                <button className="btn" onClick={ () => {this.toggleDescription()} }>
+                    { (!this.state.isDescrOpen) ? "Развернуть" : "Свернуть" }
+                </button>
             </div>
         </section>
     }

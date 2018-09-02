@@ -1,4 +1,5 @@
-export let initialState = [
+export let initialState = {
+    tasks:  [
         {
             title: "Task 1",
             projectName: "Project One",
@@ -7,4 +8,6 @@ export let initialState = [
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis accusamus culpa totam exercitationem officiis nam error harum quasi quas molestiae repudiandae aperiam ipsa, beatae enim a iusto quaerat reiciendis esse.",
             showDescription: false
         }
-    ]
+    ],
+    projectNamesSelect: ["Все", "Project One"]
+}

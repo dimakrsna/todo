@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import { store } from "../store/reducers/rootReducer";
 import { formTypeAction } from './../store/actions/formTypeActions';
 import { taskAction } from "../store/actions/taskAction";
+import { addProjectNameToSelectAction } from "../store/actions/addProjectNameToSelectAction";
 
 export class Form extends PureComponent {
     constructor(props){
@@ -38,13 +39,17 @@ export class Form extends PureComponent {
                 }
                 //end validate form
 
+
+                if(form.elements[i].name == 'projectName'){
+                    store.dispatch(addProjectNameToSelectAction(form.elements[i].value))
+                }
+
                 data[form.elements[i].name] = form.elements[i].value;
                 form.elements[i].style.borderColor = '';
             }
         }
 
         data.key = this.generateKey();
-        data.showDescription = false;
         store.dispatch(taskAction(data));
         store.dispatch(formTypeAction(''));
     }

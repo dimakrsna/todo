@@ -6,14 +6,12 @@ export const testData = {
             priority: 1,
             key: "",
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis accusamus culpa totam exercitationem officiis nam error harum quasi quas molestiae repudiandae aperiam ipsa, beatae enim a iusto quaerat reiciendis esse.",
-            showDescription: false
         }, {
             title: "Task 2",
             projectName: "Project Two",
             priority: 2,
             key: "",
             description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis accusamus culpa totam exercitationem officiis nam error harum quasi quas molestiae repudiandae aperiam ipsa, beatae enim a iusto quaerat reiciendis esse.",
-            showDescription: false
         }
     ],
     filter: {
@@ -23,5 +21,5 @@ export const testData = {
     formType: {
         type: "", //new, edit, ""
     },
-    projectNameList: {},
+    projectNamesSelect: [],
 }
