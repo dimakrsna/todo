@@ -14,7 +14,7 @@ export class App extends Component {
     render() {
         return <main className="veiwport">
             <h1 className="h1">Todo:</h1>
-            <TaskList tasks={store.getState().tasks}/>
+            <TaskList data={store.getState()}/>
             <Filter />
             { store.getState().formType.type == 'new' && <Form /> }
         </main>

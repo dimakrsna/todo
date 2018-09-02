@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 import { store } from "../store/reducers/rootReducer";
 import { closeTaskAction } from "../store/actions/closeTaskAction";
 import { removeProjectNameFromSelectAction } from "../store/actions/removeProjectNameFromSelectAction";
 
-export class Task extends PureComponent {
+export class Task extends Component {
 
     constructor(props){
         super(props);
