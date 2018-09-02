@@ -1,4 +1,4 @@
-export let initialState = {
+let exampleState = {
     tasks:  [
         {
             title: "Task 1",
@@ -11,3 +11,12 @@ export let initialState = {
     ],
     projectNamesSelect: ["Все", "Project One"]
 }
+
+
+let getSavedState = function(){
+    return JSON.parse(localStorage.getItem('savedState'));
+}
+
+let initialState = getSavedState() || exampleState;
+
+export { initialState };

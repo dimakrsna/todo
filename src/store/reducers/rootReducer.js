@@ -13,3 +13,13 @@ const rootReducer = combineReducers({
 })
 
 export const store = createStore(rootReducer);
+
+
+let setLocalStore = function () {
+
+    store.subscribe(() => {
+        localStorage.setItem('savedState', JSON.stringify(store.getState()));
+    })
+}
+
+setLocalStore();
