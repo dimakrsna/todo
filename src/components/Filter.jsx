@@ -13,10 +13,10 @@ export class Filter extends Component {
     render(){
         return <aside className="filter">
                 <button className="btn btn--filter" onClick={()=> {this.addNewTask()}}>Новая задача</button>
-                <span className="check">
-                    <input type="checkbox" id="cb-priority" className="check__box" />
-                    <label htmlFor="cb-priority" className="check__text">По приоритету</label>
-                </span>
+                {/*<span className="check">*/}
+                    {/*<input type="checkbox" id="cb-priority" className="check__box" />*/}
+                    {/*<label htmlFor="cb-priority" className="check__text">По приоритету</label>*/}
+                {/*</span>*/}
                <ProjNamesSelect namesList={ store.getState().projectNamesSelect }/>
             </aside>
     }

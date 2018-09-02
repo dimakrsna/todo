@@ -1,8 +1,7 @@
 $md-max-width: 1200px;
 $sm-max-width: 980px;
-$xs-max-width: 750px;
+$xs-max-width: 650px;
 $xxs-max-width: 500px;
-
 
 /*------------------------
 /    RESPONSIVE laptop
@@ -10,12 +9,11 @@ $xxs-max-width: 500px;
 
 @media only screen and (max-width: $md-max-width) {
 
-	/*---------------
-	/  TITLE laptop
-	----------------*/
+  /*---------------
+  /  TITLE laptop
+  ----------------*/
 
 }
-
 
 /*------------------------
 /    RESPONSIVE tablet
@@ -23,11 +21,10 @@ $xxs-max-width: 500px;
 
 @media only screen and (max-width: $sm-max-width) {
 
-	/*---------------
-	/  TITLE tablet
-	----------------*/
+  /*---------------
+  /  TITLE tablet
+  ----------------*/
 }
-
 
 /*--------------------------
 /    RESPONSIVE mob-L
@@ -35,11 +32,66 @@ $xxs-max-width: 500px;
 
 @media only screen and (max-width: $xs-max-width) {
 
-	/*--------------
-	/  TITLE mob-L
-	---------------*/
-}
+  /*--------------
+  /  TITLE mob-L
+  ---------------*/
 
+  body {
+    font-size: 0.9em;
+  }
+
+  .h1 {
+    margin: 0;
+  }
+
+  .veiwport {
+    max-width: 100%;
+  }
+
+  .btns-wrap {
+    display: block;
+  }
+
+  .btn {
+    display: block;
+    min-width: auto;
+    height: 30px;
+    width: 100%;
+    margin-bottom: 5px;
+
+    &--form {
+      margin-bottom: 10px;
+    }
+  }
+
+  .task__info {
+    display: block;
+  }
+
+  .filter {
+    display: block;
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  .form-wrap {
+    margin: 10px;
+    background: rgba(0,0,0, .03);
+  }
+
+  .form__label {
+    position: static;
+  }
+
+  .form__field {
+    height: 30px;
+  }
+
+  .form {
+    width: auto;
+    float: none;
+  }
+}
 
 /*------------------------
 /    RESPONSIVE mob-M
@@ -47,8 +99,8 @@ $xxs-max-width: 500px;
 
 @media only screen and (max-width: $xxs-max-width) {
 
-	/*--------------
-	/  TITLE mob-M
-	---------------*/
+  /*--------------
+  /  TITLE mob-M
+  ---------------*/
 
 }

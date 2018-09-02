@@ -36,7 +36,7 @@ export class Task extends Component {
             </div>
             <div className="task__descr">{ (this.state.isDescrOpen) ? description : "" }</div>
             <div className="btns-wrap">
-                <button className="btn">Изменить</button>
+                {/*<button className="btn">Изменить</button>*/}
                 <button className="btn" onClick={ () => {this.closeTask(key, projectName)} }>Закрыть</button>
                 <button className="btn" onClick={ () => {this.toggleDescription()} }>
                     { (!this.state.isDescrOpen) ? "Развернуть" : "Свернуть" }
