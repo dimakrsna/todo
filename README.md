@@ -1,7 +1,7 @@
 # Todo
 Приложение Todo.
 
-Стек технологий: **React, Redux, ES6, Webpack**.
+Стек технологий: **React, Redux, ES6, Webpack, SCSS**.
 
 Посмотреть [демо](https://dimakrsna.github.io/todo/dist/index.html)
 
