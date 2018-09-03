@@ -11,7 +11,8 @@ export class TaskList extends Component {
     }
 
     componentWillReceiveProps(newProps){
-        this.setState(newProps)
+        this.setState(newProps);
+
     }
 
     render() {

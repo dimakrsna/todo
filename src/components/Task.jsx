@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 import { store } from "../store/reducers/rootReducer";
 import { closeTaskAction } from "../store/actions/closeTaskAction";
 import { removeProjectNameFromSelectAction } from "../store/actions/removeProjectNameFromSelectAction";
+import { taskEditAction } from "../store/actions/formEditActions";
+import { formTypeAction } from "../store/actions/formTypeActions";
 
 export class Task extends Component {
 
     constructor(props){
         super(props);
+
         this.state = {
             isDescrOpen: false
         }
@@ -16,7 +19,11 @@ export class Task extends Component {
     closeTask(key, projectName){
         store.dispatch(closeTaskAction(key));
         store.dispatch(removeProjectNameFromSelectAction(projectName));
+    }
 
+    editTask(){
+        store.dispatch(taskEditAction(this.props.data));
+        store.dispatch(formTypeAction('edit'))
     }
 
     toggleDescription(){
@@ -36,7 +43,7 @@ export class Task extends Component {
             </div>
             <div className="task__descr">{ (this.state.isDescrOpen) ? description : "" }</div>
             <div className="btns-wrap">
-                {/*<button className="btn">Изменить</button>*/}
+                <button className="btn" onClick={ ()=> {this.editTask()} }>Изменить</button>
                 <button className="btn" onClick={ () => {this.closeTask(key, projectName)} }>Закрыть</button>
                 <button className="btn" onClick={ () => {this.toggleDescription()} }>
                     { (!this.state.isDescrOpen) ? "Развернуть" : "Свернуть" }

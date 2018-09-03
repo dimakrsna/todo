@@ -22,4 +22,5 @@ export const testData = {
         type: "", //new, edit, ""
     },
     projectNamesSelect: [],
+    editFormValues: {}
 }

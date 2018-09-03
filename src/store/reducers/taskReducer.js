@@ -11,6 +11,17 @@ export function taskReducer(state = initialState.tasks, action){
             return state.filter(
                 (item) => item.key !== action.payload
             );
+        case 'EDIT_TASK':
+
+           let newState = [];
+
+           state.forEach((item, index) => {
+               (item.key == action.payload.key) ?  newState.push(action.payload)
+                   : newState.push(item)
+                }
+            )
+
+            return newState;
     }
 
     return state;

@@ -1,11 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 import { store } from "../store/reducers/rootReducer";
 import { formTypeAction } from './../store/actions/formTypeActions';
-import { taskAction } from "../store/actions/taskAction";
+import { taskAddAction } from "../store/actions/taskAddAction";
 import { addProjectNameToSelectAction } from "../store/actions/addProjectNameToSelectAction";
+import { taskEditAction } from "../store/actions/taskEditAction";
+import { removeProjectNameFromSelectAction } from "../store/actions/removeProjectNameFromSelectAction";
 
-export class Form extends PureComponent {
+export class Form extends Component {
     constructor(props){
         super(props);
     }
@@ -49,25 +51,39 @@ export class Form extends PureComponent {
             }
         }
 
-        data.key = this.generateKey();
-        store.dispatch(taskAction(data));
-        store.dispatch(formTypeAction(''));
+        if (this.props.editData){
+            data.key = this.props.editData.key;
+            let prevProjName = this.props.editData.projectName;
+
+            store.dispatch(removeProjectNameFromSelectAction(prevProjName));
+            store.dispatch(taskEditAction(data));
+            store.dispatch(formTypeAction(''));
+        } else {
+            data.key = this.generateKey();
+            store.dispatch(taskAddAction(data));
+            store.dispatch(formTypeAction(''));
+        }
     }
 
     render(){
+        let editData = (this.props.editData) ? this.props.editData : '';
+
         return <div className="form-wrap clear">
             <form action="" className="form" ref="mainForm">
                 <div className="form__item">
                     <label htmlFor="f-task" className="form__label">Название задачи: </label>
-                    <input name="title" type="text" className="form__field" id="f-task" />
+                    <input name="title" type="text" className="form__field" id="f-task"
+                           defaultValue={ (editData) ? editData.title : '' } />
                 </div>
                 <div className="form__item">
                     <label htmlFor="f-proj" className="form__label">Название проекта: </label>
-                    <input name="projectName" type="text" className="form__field" id="f-proj" />
+                    <input name="projectName" type="text" className="form__field" id="f-proj"
+                           defaultValue={ (editData) ? editData.projectName : '' }/>
                 </div>
                 <div className="form__item">
                     <label htmlFor="f-priority" className="form__label">Приоритет: </label>
-                    <select className="form__field" name="priority" id="f-priority">
+                    <select className="form__field" name="priority" id="f-priority"
+                            defaultValue={ (editData) ? editData.priority : '' }>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -76,7 +92,8 @@ export class Form extends PureComponent {
                 </div>
                 <div className="form__item">
                     <label htmlFor="f-descr" className="form__label">Описание: </label>
-                    <textarea name="description" type="text" className="form__field form__field--descr" id="f-descr"></textarea>
+                    <textarea name="description" type="text" className="form__field form__field--descr" id="f-descr"
+                              defaultValue={ (editData) ? editData.description : '' }></textarea>
                 </div>
                 <div className="btns-wrap">
                     <button className="btn btn--form" onClick={

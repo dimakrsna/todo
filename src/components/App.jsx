@@ -17,6 +17,7 @@ export class App extends Component {
             <TaskList data={store.getState()}/>
             <Filter />
             { store.getState().formType.type == 'new' && <Form /> }
+            { store.getState().formType.type == 'edit' && <Form editData={store.getState().editFormValues} /> }
         </main>
     }
 }

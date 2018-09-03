@@ -85,6 +85,10 @@ $xxs-max-width: 500px;
 
   .form__field {
     height: 30px;
+
+    &--descr {
+      height: 120px;
+    }
   }
 
   .form {
