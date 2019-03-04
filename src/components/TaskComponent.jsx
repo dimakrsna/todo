@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { store } from "../store/reducers/rootReducer";
 import { closeTaskAction } from "../store/actions/closeTaskAction";
-import { removeProjectNameFromSelectAction } from "../store/actions/removeProjectNameFromSelectAction";
 import { taskEditAction } from "../store/actions/formEditActions";
 import { formTypeAction } from "../store/actions/formTypeActions";
+import { removeProjectNameFromSelectAction } from "../store/actions/removeProjectNameFromSelectAction";
 
-export class Task extends Component {
+class Task extends Component {
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            isDescrOpen: false
-        }
+    state = {
+        isDescrOpen: false
     }
 
     closeTask(key, projectName){
-        store.dispatch(closeTaskAction(key));
-        store.dispatch(removeProjectNameFromSelectAction(projectName));
+        this.props.dispatch(closeTaskAction(key));
+        this.props.dispatch(removeProjectNameFromSelectAction(projectName));
     }
 
     editTask(){
-        store.dispatch(taskEditAction(this.props.data));
-        store.dispatch(formTypeAction('edit'))
+        this.props.dispatch(taskEditAction(this.props.data));
+        this.props.dispatch(formTypeAction('edit'))
     }
 
     toggleDescription(){
@@ -51,5 +47,6 @@ export class Task extends Component {
             </div>
         </section>
     }
-
 }
+
+export default connect()(Task)

@@ -9,7 +9,7 @@ let exampleState = {
             showDescription: false
         }
     ],
-    projectNamesSelect: ["Все", "Project One"]
+    projectsList: ["Все", "Project One"]
 }
 
 

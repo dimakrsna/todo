@@ -1,4 +1,7 @@
-export function projectNamesSelectReducer(state = {}, action){
+import { initialState } from '../initialState';
+let projectsList = ((initialState || {}).projectsList || false);
+
+export function projectsListReducer(state = projectsList, action){
     switch (action.type){
         case 'ADD_PROJECT_NAME_TO_SELECT':
 

@@ -1,24 +1,23 @@
 import { createStore, combineReducers } from 'redux';
 
 import { filterReducer } from './filterReducer';
-import { projectNamesSelectReducer } from './projectNamesSelectReducer';
+import { projectsListReducer } from './projectsListReducer';
 import { formTypeReducer } from './formTypeReducer';
 import { taskReducer } from "./taskReducer";
-import { taskEditerDataReducer } from "./taskEditerDataReducer";
+import { editFormDataReducer } from "./editFormDataReducer";
 
 const rootReducer = combineReducers({
     filter: filterReducer,
-    projectNamesSelect: projectNamesSelectReducer,
+    projectsList: projectsListReducer,
     formType: formTypeReducer,
     tasks: taskReducer,
-    editFormValues: taskEditerDataReducer
+    editFormData: editFormDataReducer
 })
 
-export const store = createStore(rootReducer);
-
+export const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+// export const store = createStore(rootReducer);
 
 let setLocalStore = function () {
-
     store.subscribe(() => {
         localStorage.setItem('savedState', JSON.stringify(store.getState()));
     })

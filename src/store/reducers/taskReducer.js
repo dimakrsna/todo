@@ -1,24 +1,23 @@
 import { initialState } from "../initialState";
 
-export function taskReducer(state = initialState.tasks, action){
+export function taskReducer(state = initialState.tasks, action) {
 
-    switch (action.type){
+    switch (action.type) {
         case 'ADD_TASK':
             return [
-               ...state, {...action.payload}
+                ...state, { ...action.payload }
             ];
         case 'CLOSE_TASK':
             return state.filter(
                 (item) => item.key !== action.payload
             );
         case 'EDIT_TASK':
+            let newState = [];
 
-           let newState = [];
-
-           state.forEach((item, index) => {
-               (item.key == action.payload.key) ?  newState.push(action.payload)
-                   : newState.push(item)
-                }
+            state.forEach((item, index) => {
+                (item.key == action.payload.key) ? newState.push(action.payload)
+                    : newState.push(item)
+            }
             )
 
             return newState;

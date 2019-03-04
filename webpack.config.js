@@ -1,6 +1,8 @@
 const webpack = require('webpack'),
       ExtractTextPlugin = require("extract-text-webpack-plugin"),
-      UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+      UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+      CopyWebpackPlugin = require('copy-webpack-plugin'),
+      SpritesmithPlugin = require('webpack-spritesmith');
 
 module.exports = {
     entry: [
@@ -44,12 +46,16 @@ module.exports = {
                     },
                 },
                 ],
-            }
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
+            },
             ]
         },
         mode: 'production',
         resolve: {
-            extensions: ['*', '.js', '.jsx']
+            extensions: ['*', '.js', '.jsx'],
         },
     output: {
         path: __dirname + '/dist',
@@ -59,6 +65,25 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin("css/style.css"),
+        new CopyWebpackPlugin([
+            { from: 'src/img', to: 'img' },
+            { from: 'src/fonts', to: 'fonts' },
+            { from: 'src/index.html', to: '' },
+        ]),
+        new SpritesmithPlugin({
+            src: {
+                cwd: 'src/png-icons',
+                glob: '*.png'
+            },
+            target: {
+                image: 'src/img/sprite.png',
+                css: 'src/scss/_sprite.scss'
+            },
+            apiOptions: {
+                cssImageRef: "/img/sprite.png"
+            },
+            retina: '@2x'
+        })
     ],
     devServer: {
         contentBase: './src',
