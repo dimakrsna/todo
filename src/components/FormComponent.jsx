@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import memoizeSelector from '../store/selectors/momoizeSelector';
 import { formTypeAction } from '../store/actions/formTypeActions';
 import { taskAddAction } from "../store/actions/taskAddAction";
 import { addProjectNameToSelectAction } from "../store/actions/addProjectNameToSelectAction";
 import { taskEditAction } from "../store/actions/taskEditAction";
 import { removeProjectNameFromSelectAction } from "../store/actions/removeProjectNameFromSelectAction";
-
 
 class Form extends Component {
 
@@ -69,8 +69,6 @@ class Form extends Component {
     render() {
         let { editFormData, formType } = this.props;
 
-        // console.log('render form', editFormData);
-
         if (formType != '') {
             return <div className="form-wrap clear">
                 <form action="" className="form" ref="mainForm">
@@ -113,12 +111,11 @@ class Form extends Component {
     }
 }
 
-
 const mapStateToProps = (state) => {
-    return {
+    return memoizeSelector({
         editFormData: state.editFormData,
         formType: state.formType
-    }
+    });
 }
 
 export default connect(mapStateToProps)(Form);
