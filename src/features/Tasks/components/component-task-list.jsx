@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import TaskComponent from "./TaskComponent";
+import TaskContainer from "../containers/container-task";
 
 const TaskList = (props) => {
     let { tasks, filter } = props;
@@ -10,14 +10,14 @@ const TaskList = (props) => {
         return <div className="tasks-list">
             {tasks.map((item) => {
                     if (item.projectName == filter.byProjectName) {
-                        return <TaskComponent data={item} key={item.key} />;
+                        return <TaskContainer data={item} key={item.key} />;
                     }
                 })}
         </div>
     } else {
         return <div className="tasks-list">{
             tasks && tasks.map((item) => {
-                return <TaskComponent data={item} key={item.key} />
+                return <TaskContainer data={item} key={item.key} />
             })
         }</div>
     }
