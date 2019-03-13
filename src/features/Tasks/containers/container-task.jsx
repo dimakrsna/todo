@@ -31,6 +31,7 @@ class Task extends Component {
     }
 
     render() {
+        console.log('render')
         return <TaskComponent
             data={this.props.data}
             editTask={this.editTask}
